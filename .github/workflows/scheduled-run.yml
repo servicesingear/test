@@ -3,6 +3,9 @@ name: Daily Quotation Bot for Social Media
 on:
   workflow_dispatch:  # Allows manual trigger only
 
+permissions:
+  contents: write  # Required to push changes
+
 jobs:
   run-script:
     runs-on: ubuntu-latest
@@ -23,3 +26,13 @@ jobs:
 
     - name: Run bot script
       run: python generate_quote.py
+
+    - name: Configure Git
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+    - name: Commit and push if changes
+      run: |
+        git add generated_quotes.txt
+        git diff --cached --quiet || (git commit -m "Add new daily quote" && git push)
