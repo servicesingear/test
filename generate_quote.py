@@ -20,7 +20,7 @@ def get_existing_prompts(file_path):
         return file.read().splitlines()
 
 # Run the generation process 30 times
-for _ in range(10):
+for _ in range(1):
     existing_prompts = get_existing_prompts(PROMPT_FILE)
     existing_prompts_text = "\n".join(existing_prompts)
 
