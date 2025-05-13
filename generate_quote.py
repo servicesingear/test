@@ -5,8 +5,9 @@ import os
 import time  # Optional: To add a delay between iterations
 
 load_dotenv(override=True)  # Load environment variables from .env file
+api_key = os.getenv("API_KEY")
 
-client = genai.Client()
+client = genai.Client(api_key=api_key)
 
 # File to store generated prompts
 PROMPT_FILE = "generated_quotes.txt"
